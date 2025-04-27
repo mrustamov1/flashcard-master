@@ -22,6 +22,7 @@ export function SignIn() {
             className={styles.directSingUp}
             onClick={() => navigate("/sign-up")}
           >
+            {" "}
             Sign Up
           </b>
         </p>

@@ -158,7 +158,8 @@ body {
   color: #212121;
   background: #edf2f8;
   -ms-overflow-style: -ms-autohiding-scrollbar;
-  margin: 0;
+  max-width: 130rem;
+  margin: 0 auto;
 }
 
 button {

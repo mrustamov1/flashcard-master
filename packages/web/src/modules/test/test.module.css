@@ -1,0 +1,45 @@
+.content {
+  padding-top: 3rem;
+  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.user{
+  display: flex;
+  justify-content: space-between;
+}
+
+.logoName {
+  display: flex;
+  gap: 1rem;
+}
+
+.flashcard {
+  width: 4rem;
+  height: 4rem;
+}
+
+.cards {
+  display: flex;
+  gap: 2rem;
+}
+
+.card {
+  padding: 5rem 10rem;
+  width: 100%;
+  background-color: #f6f7fb;
+  border-radius: 1rem;
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.05),
+    0 8px 16px rgba(0, 0, 0, 0.1);
+}
+.answers {
+  width: 100%;
+  background-color: #f6f7fb;
+  border-radius: 1rem;
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.05),
+    0 8px 16px rgba(0, 0, 0, 0.1);
+  height: 60vh;
+}

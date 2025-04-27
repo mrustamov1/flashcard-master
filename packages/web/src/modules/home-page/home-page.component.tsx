@@ -28,13 +28,13 @@ export function HomePage() {
             </div>
             <button
               className={styles.joinButton}
-              onClick={() => navigate("/sign-up")}
+              onClick={() => navigate("/test")}
             >
               Join
             </button>
           </article>
 
-          <img className={styles.homePageLogo} src={logo} alt="" />
+          <img className={styles.homePageLogo} src={logo} alt="Logo" />
         </div>
       </main>
     </>
