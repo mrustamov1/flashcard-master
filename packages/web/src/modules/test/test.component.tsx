@@ -18,11 +18,6 @@ export function Test() {
       <div className={styles.cards}>
         <div className={styles.card}>
           <img src={card} alt="" />
-          Flashcard
-          <img className={styles.arrowRight} src={arrowRight} alt="" />
-        </div>
-        <div className={styles.card}>
-          <img src={card} alt="" />
           Choose a topic{" "}
           <img className={styles.arrowRight} src={arrowRight} alt="" />
         </div>
@@ -34,6 +29,11 @@ export function Test() {
         <div className={styles.card}>
           <img src={card} alt="" />
           Learning
+          <img className={styles.arrowRight} src={arrowRight} alt="" />
+        </div>
+        <div className={styles.card}>
+          <img src={card} alt="" />
+          Guide about quiz
           <img className={styles.arrowRight} src={arrowRight} alt="" />
         </div>
       </div>
