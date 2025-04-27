@@ -23,17 +23,17 @@ export function Test() {
         </div>
         <div className={styles.card}>
           <img src={card} alt="" />
+          Choose a topic{" "}
+          <img className={styles.arrowRight} src={arrowRight} alt="" />
+        </div>
+        <div className={styles.card}>
+          <img src={card} alt="" />
           Random Topic
           <img className={styles.arrowRight} src={arrowRight} alt="" />
         </div>
         <div className={styles.card}>
           <img src={card} alt="" />
           Learning
-          <img className={styles.arrowRight} src={arrowRight} alt="" />
-        </div>
-        <div className={styles.card}>
-          <img src={card} alt="" />
-          Guide about quiz{" "}
           <img className={styles.arrowRight} src={arrowRight} alt="" />
         </div>
       </div>
