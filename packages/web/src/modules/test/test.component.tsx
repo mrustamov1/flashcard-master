@@ -11,7 +11,7 @@ export function Test() {
           <img className={styles.flashcard} src={flashcard} alt="Falshcard" />
           <h1>Flashcard Master</h1>
         </div>
-        <img width={55} height={55} src={userProfile} alt="User" />
+        <img width={50} height={50} src={userProfile} alt="User" />
       </div>
       <div className={styles.cards}>
         <div className={styles.card}>
