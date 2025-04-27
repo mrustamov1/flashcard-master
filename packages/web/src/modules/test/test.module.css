@@ -5,7 +5,7 @@
   flex-direction: column;
 }
 
-.user{
+.user {
   display: flex;
   justify-content: space-between;
 }
@@ -26,7 +26,12 @@
 }
 
 .card {
-  padding: 5rem 10rem;
+  padding: 5rem 4rem;
+  justify-content: center;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   width: 100%;
   background-color: #f6f7fb;
   border-radius: 1rem;
@@ -42,4 +47,49 @@
     0 4px 8px rgba(0, 0, 0, 0.05),
     0 8px 16px rgba(0, 0, 0, 0.1);
   height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-size: 4rem;
+}
+
+.desc {
+  max-width: 60rem;
+  text-align: center;
+}
+
+.arrowRight {
+  opacity: 0;
+}
+
+.card:hover .arrowRight {
+  opacity: 1;
+  transform: translateX(50%);
+  transition: all ease 1s;
+}
+
+.top {
+  margin-top: 2rem;
+  padding: 2rem;
+  cursor: pointer;
+  background-color: #f6f7fb;
+  border-radius: 50%;
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.05),
+    0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.arrowFatLines {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.top:hover .arrowFatLines {
+  transform: translateY(-30%);
+  transition: all ease 1s;
 }

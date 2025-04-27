@@ -2,6 +2,8 @@ import styles from "./test.module.css"
 import flashcard from "../../assets/flashcard.png"
 import userProfile from "../../assets/user-profile.png"
 import card from "../../assets/card.svg"
+import arrowRight from "../../assets/arrow-right.svg"
+import arrowFatLines from "../../assets/arrow-fat-lines-up.svg"
 
 export function Test() {
   return (
@@ -17,12 +19,34 @@ export function Test() {
         <div className={styles.card}>
           <img src={card} alt="" />
           Flashcard
+          <img className={styles.arrowRight} src={arrowRight} alt="" />
         </div>
-        <div className={styles.card}>k;</div>
-        <div className={styles.card}>k;</div>
-        <div className={styles.card}>k;</div>
+        <div className={styles.card}>
+          <img src={card} alt="" />
+          Random Topic
+          <img className={styles.arrowRight} src={arrowRight} alt="" />
+        </div>
+        <div className={styles.card}>
+          <img src={card} alt="" />
+          Learning
+          <img className={styles.arrowRight} src={arrowRight} alt="" />
+        </div>
+        <div className={styles.card}>
+          <img src={card} alt="" />
+          Guide about quiz{" "}
+          <img className={styles.arrowRight} src={arrowRight} alt="" />
+        </div>
       </div>
-      <div className={styles.answers}></div>
+      <div className={styles.answers}>
+        <h1 className={styles.title}>Welcome to Flashcard</h1>
+        <h3 className={styles.desc}>
+          This platform sharpens your mind and accelerates your learning through
+          quick and effective practice
+        </h3>
+        <div className={styles.top}>
+          <img className={styles.arrowFatLines} src={arrowFatLines} alt="" />
+        </div>
+      </div>
     </main>
   )
 }
