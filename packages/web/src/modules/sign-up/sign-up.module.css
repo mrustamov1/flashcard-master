@@ -1,0 +1,66 @@
+.content {
+  display: flex;
+  margin: 0 auto;
+  max-width: 55rem;
+  align-items: center;
+  height: 100vh;
+  justify-content: center;
+}
+
+.container {
+  border-radius: 1rem;
+  padding: 4rem;
+  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow:
+    0 8px 24px rgba(108, 99, 255, 0.2),
+    0 16px 32px rgba(108, 99, 255, 0.15),
+    0 0 60px rgba(108, 99, 255, 0.1);
+}
+
+.title {
+  text-align: center;
+}
+.inputAndLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.starterInputs {
+  display: flex;
+  gap: 2rem;
+}
+
+.singUpButton {
+  padding: 1.25rem 1.5rem;
+  border: none;
+  background-color: #6c63ff;
+  border-radius: 0.8rem;
+  color: #ffffff;
+  font-size: 1.7rem;
+  font-weight: bold;
+}
+
+.singUpButton:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.singUpButton:active {
+  opacity: 1;
+}
+
+.signInText {
+  text-align: center;
+}
+
+.signInButton {
+  cursor: pointer;
+}
+.signInButton:hover {
+  text-decoration: underline;
+  transition: all ease 0.5s;
+  color: #6c63ff;
+}

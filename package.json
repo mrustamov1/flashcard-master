@@ -1,0 +1,23 @@
+{
+  "name": "flashcards-master",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "compile": "tsc -b -w",
+    "server": "cd ./packages/server && cross-env npm run watch",
+    "web": "cd ./packages/web && npm run dev",
+    "docker": "docker-compose up",
+    "bootstrap": "sh ./scripts/bootstrap.sh",
+    "clean": "sh ./scripts/clean.sh",
+    "clean-hard": "sh ./scripts/clean.sh --hard",
+    "build-local": "sh ./scripts/build-local.sh"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "prettier": "^3.5.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "packageManager": "pnpm@8.14.1+sha512.856c4ecd97c5d3f30354ebc373cd32fb37274295c489db2d0f613a1e60f010cadfbb15036d525f3a06dec1897e4219b3c4f6d3be8f2f62fb0a366bee6aaa7533"
+}

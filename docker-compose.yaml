@@ -1,0 +1,17 @@
+volumes:
+  flashcard_master:
+    external: true
+
+services:
+  postgres:
+    container_name: "flashcard_master"
+    image: "postgres:16.3"
+    ports: 
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: "flashcard_master"
+      POSTGRES_PASSWORD: "flashcard_master!"
+      POSTGRES_DB: "flashcard_master"
+    volumes: 
+      - flashcard_master:/var/lib/postgresql/data
+

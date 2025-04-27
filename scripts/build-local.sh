@@ -1,0 +1,1 @@
+docker-compose --env-file .env -f deploy/docker-compose.local.yaml up -d --build

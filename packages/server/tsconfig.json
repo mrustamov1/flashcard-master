@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    /* Visit https://aka.ms/tsconfig to read more about this file */
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "target": "esnext",
+    "module": "esnext",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "strict": true,
+
+    ///////////////////////////////
+    "composite": true,
+    "useDefineForClassFields": true,
+    "forceConsistentCasingInFileNames": true,
+    "pretty": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    "lib": ["es2019"]
+  },
+
+  "include": ["./src/**/*"]
+}

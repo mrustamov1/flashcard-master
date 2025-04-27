@@ -1,0 +1,402 @@
+@font-face {
+  font-family: "Intern";
+  src: url("../assets/fonts/Inter_24pt-ExtraLight.ttf");
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: "Intern";
+  src: url("../assets/fonts/Inter_24pt-Light.ttf");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Intern";
+  src: url("../assets/fonts/Inter_24pt-Regular.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Intern";
+  src: url("../assets/fonts/Inter_24pt-Medium.ttf");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Intern";
+  src: url("../assets/fonts/Inter_24pt-SemiBold.ttf");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Intern";
+  src: url("../assets/fonts/Inter_24pt-Bold.ttf");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Intern";
+  src: url("../assets/fonts/Inter_24pt-ExtraBold.ttf");
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: "Intern";
+  src: url("../assets/fonts/Inter_24pt-Black.ttf");
+  font-weight: 900;
+}
+
+/* --------------------------------------------------------------------------- */
+/* RESET */
+/* --------------------------------------------------------------------------- */
+
+input {
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: #000;
+  /* Add other properties to remove specific styles */
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.8rem;
+  font-family: "Intern";
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+input {
+  font-size: inherit;
+}
+
+img {
+  height: auto;
+}
+
+i {
+  color: #212121;
+  font-size: 1.6rem;
+}
+.root {
+  background: #edf2f8;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --------------------------------------------------------------------------- */
+/* UTILITY CLASSES */
+/* --------------------------------------------------------------------------- */
+
+[hidden] {
+  display: none !important;
+}
+
+p {
+  user-select: auto;
+}
+
+/* --------------------------------------------------------------------------- */
+/* FLEXBOX */
+/* --------------------------------------------------------------------------- */
+
+:global(.marginRightAuto) {
+  margin-right: auto;
+}
+
+/* --------------------------------------------------------------------------- */
+/* GLOBALS */
+/* --------------------------------------------------------------------------- */
+
+html {
+  font-size: 10px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Intern", sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #212121;
+  background: #edf2f8;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  margin: 0;
+}
+
+button {
+  -webkit-app-region: no-drag;
+}
+
+/* --------------------------------------------------------------------------- */
+/* FORM CONTROLS */
+/* --------------------------------------------------------------------------- */
+
+label {
+  font-size: 1.5rem;
+}
+
+input,
+textarea {
+  border: 0.15rem solid #6c63ff;
+  border-radius: 0.8rem;
+  background-color: transparent;
+  width: 100%;
+  font-size: 1.6rem;
+  line-height: 1.6;
+  padding: 1.25rem 1.5rem;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0;
+  /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  /* Firefox */
+  padding: 0;
+}
+
+textarea {
+  resize: none;
+}
+
+/* --------------------------------------------------------------------------- */
+/* HEADINGS */
+/* --------------------------------------------------------------------------- */
+
+h1 {
+  font-size: 2.8rem;
+  color: #212121;
+  font-family: "Intern";
+  font-weight: 600;
+}
+
+h2 {
+  font-size: 2.4rem;
+  color: #212121;
+  font-family: "Intern";
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 1.8rem;
+  font-family: "Intern";
+  font-weight: 600;
+  color: #212121;
+}
+
+h4 {
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  font-family: "Intern";
+  color: #212121;
+  margin: 1rem 0;
+}
+
+h5 {
+  font-size: 1.8rem;
+  font-family: "Intern";
+}
+
+/* --------------------------------------------------------------------------- */
+/* TEXT */
+/* --------------------------------------------------------------------------- */
+
+small,
+time {
+  font-size: 1.3rem;
+  font-weight: 300;
+}
+
+p {
+  font-size: 1.8rem;
+}
+
+:global(.font13) {
+  font-size: 1.3rem;
+}
+
+:global(.font14) {
+  font-size: 1.4rem;
+}
+
+:global(.font16) {
+  font-size: 1.6rem;
+}
+
+:global(.font18) {
+  font-size: 1.8rem;
+}
+
+:global(.font24) {
+  font-size: 2.4rem;
+}
+
+/* --------------------------------------------------------------------------- */
+/* LINK */
+/* --------------------------------------------------------------------------- */
+
+:global(.link) {
+  color: #1b9ffc;
+  cursor: pointer;
+}
+
+:global(.link) > * {
+  color: #1b9ffc;
+}
+
+:global(.link-o) {
+  color: #8592aa;
+  cursor: pointer;
+}
+
+:global(.link-o) > * {
+  color: #8592aa;
+}
+
+/* --------------------------------------------------------------------------- */
+/* INDENTATION */
+/* --------------------------------------------------------------------------- */
+
+:global(.top1) {
+  margin-top: 1rem !important;
+}
+
+:global(.top2) {
+  margin-top: 2rem !important;
+}
+
+/* --------------------------------------------------------------------------- */
+/* SCROLL */
+/* --------------------------------------------------------------------------- */
+
+/* Customize website's scrollbar like Mac OS
+Not supports in Firefox and IE */
+/**::-webkit-scrollbar,*/
+/**::-webkit-scrollbar-thumb {*/
+/*  width: 20px;*/
+/*  border-radius: 13px;*/
+/*}*/
+
+/**::-webkit-scrollbar-thumb {*/
+/*  box-shadow: inset 0 0 0 10px;*/
+/*}*/
+/* div box
+body{background-color:#babac0}
+.scrollbar {
+  height: 75vh;
+  width: 25vw;
+  min-width: 150px;
+  background: #fff;
+  overflow-y: scroll}*/
+
+[contenteditable] {
+  outline: 0px solid transparent;
+}
+
+/* --------------------------------------------------------------------------- */
+/* Colors */
+/* --------------------------------------------------------------------------- */
+:root {
+  /* main colors */
+
+  --primary: #1b9ffc;
+  --primary_border: #188fe3;
+  --primary_hover: #1f8fde;
+  --primary_hover_border: #107cc8;
+  --primary_focus: #1b7ec3;
+  --primary_focus_border: #1472b4;
+
+  --success: #5cc02a;
+  --success_border: #53ad26;
+  --success_hover: #54ad27;
+  --success_hover_border: #4b9c22;
+  --success_focus: #4b9a24;
+  --success_focus_border: #438a20;
+
+  --danger: #f35050;
+  --danger_border: #db4848;
+  --danger-hover: #d43838;
+  --danger-hover_border: #c33333;
+  --danger-focus: #b51616;
+  --danger-focus_border: #aa1414;
+  --danger-pure: #ff0000;
+
+  --outline_border: #5807c9;
+  --outline_hover: #f6f2fa;
+  /* --outline_hover: #f3f4f7; */
+
+  --secondary_border: #d9dfe7;
+
+  --secondary_input: #f8fafc;
+
+  --header_text: #414044;
+  --primary_text_dark: #262626;
+  --primary_text_light: #ffffff;
+  --border_light_gray: #e5e5e5;
+  --border_muted: #8592aa40;
+  --border_grayish_blue: #d6dadd;
+  --placeholder_text: #a3adbf;
+  --background_primary: var(--primary_text_light);
+  --secondary_text: var(--outline_border);
+  --icon_default: #8592aa;
+  --icon_moderators: #5552ec;
+  --icon_admin: #f88181;
+  --icon_golden_yellow: #ffcc00;
+  --icon_shadow_of_gold: #f3cc65;
+  --icon_background: #eef2f6;
+  --message_quote_hover: #e9f4ff;
+  --check_mark_hover: #ceebff;
+  --slow_mode_input_range: #c4cad4;
+
+  --scrollbar_track_bg: #f1f1f1;
+  --scrollbar_thumb_bg: #888;
+  --scrollbar_thumb_hover_bg: #555;
+
+  --pin_color: #ffd0ce;
+  --lavender-blue_color: #c7e7ff;
+  --light-grayish: #dedee0;
+  --orange_color: #f8a532;
+}
