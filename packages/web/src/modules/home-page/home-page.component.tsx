@@ -2,6 +2,7 @@ import logo from "../../assets/logo.svg"
 import styles from "./home-page.module.css"
 import flashcard from "../../assets/flashcard.png"
 import { useNavigate } from "react-router-dom"
+import arrowRight from "../../assets/arrow-right-white.svg"
 
 export function HomePage() {
   const navigate = useNavigate()
@@ -14,7 +15,7 @@ export function HomePage() {
               <img
                 className={styles.flashcard}
                 src={flashcard}
-                alt="Falshcard"
+                alt="Flashcard"
               />
               <h1>Flashcard Master</h1>
             </div>
@@ -26,11 +27,13 @@ export function HomePage() {
                 Study smarter, faster, and never get bored
               </span>
             </div>
+
             <button
               className={styles.joinButton}
               onClick={() => navigate("/test")}
             >
               Join
+              <img className={styles.arrowRight} src={arrowRight} alt="" />
             </button>
           </article>
 

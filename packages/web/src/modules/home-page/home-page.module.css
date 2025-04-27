@@ -48,13 +48,25 @@
   color: #ffffff;
   font-size: 1.7rem;
   font-weight: bold;
-}
-
-.joinButton:hover {
-  opacity: 0.6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  position: relative;
   cursor: pointer;
 }
 
-.joinButton:active {
+.arrowRight {
+  opacity: 0;
+  width: 2rem;
+  visibility: hidden;
+  position: absolute;
+  left: 2rem;
+}
+
+.joinButton:hover .arrowRight {
   opacity: 1;
+  transform: translateX(50%);
+  transition: all ease 1s;
+  visibility: visible;
 }

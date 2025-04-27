@@ -64,3 +64,8 @@
   transition: all ease 0.5s;
   color: #6c63ff;
 }
+
+.error {
+  font-size: 1.5rem;
+  color: #990000;
+}
