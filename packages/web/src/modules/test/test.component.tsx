@@ -4,8 +4,10 @@ import userProfile from "../../assets/user-profile.png"
 import card from "../../assets/card.svg"
 import arrowRight from "../../assets/arrow-right.svg"
 import arrowFatLines from "../../assets/arrow-fat-lines-up.svg"
+import { useNavigate } from "react-router-dom"
 
 export function Test() {
+  const navigate = useNavigate()
   return (
     <main className={styles.content}>
       <div className={styles.user}>
@@ -16,12 +18,7 @@ export function Test() {
         <img width={50} height={50} src={userProfile} alt="User" />
       </div>
       <div className={styles.cards}>
-        <div className={styles.card}>
-          <img src={card} alt="" />
-          Flashcard
-          <img className={styles.arrowRight} src={arrowRight} alt="" />
-        </div>
-        <div className={styles.card}>
+        <div className={styles.card} onClick={() => navigate('/topics')}>
           <img src={card} alt="" />
           Choose a topic{" "}
           <img className={styles.arrowRight} src={arrowRight} alt="" />
@@ -34,6 +31,11 @@ export function Test() {
         <div className={styles.card}>
           <img src={card} alt="" />
           Learning
+          <img className={styles.arrowRight} src={arrowRight} alt="" />
+        </div>
+        <div className={styles.card}>
+          <img src={card} alt="" />
+          Guide about quiz
           <img className={styles.arrowRight} src={arrowRight} alt="" />
         </div>
       </div>

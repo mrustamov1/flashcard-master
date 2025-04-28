@@ -69,6 +69,9 @@ importers:
 
   packages/web:
     dependencies:
+      classnames:
+        specifier: 2.5.1
+        version: 2.5.1
       react:
         specifier: ^19.0.0
         version: 19.1.0
@@ -839,6 +842,9 @@ packages:
   chownr@2.0.0:
     resolution: {integrity: sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ==}
     engines: {node: '>=10'}
+
+  classnames@2.5.1:
+    resolution: {integrity: sha512-saHYOzhIQs6wy2sVxTM6bUDsQO4F50V9RQ22qBpEdCW+I+/Wmke2HOl6lS6dTpdxVhb88/I6+Hs+438c3lfUow==}
 
   cliui@8.0.1:
     resolution: {integrity: sha512-BSeNnyus75C4//NQ9gQt1/csTXyo/8Sb+afLAkzAptFuMsod9HFokGNudZpi/oQV73hnVK+sR+5PVRMd+Dr7YQ==}
@@ -2757,6 +2763,8 @@ snapshots:
       supports-color: 7.2.0
 
   chownr@2.0.0: {}
+
+  classnames@2.5.1: {}
 
   cliui@8.0.1:
     dependencies:
