@@ -23,9 +23,8 @@ export function SignUp() {
         console.log("Invalid email or password")
         return false
       }
-      const result = await response.json()
-      console.log("Login success:", result)
-      navigate('/test')
+      await response.json()
+      navigate("/test")
     } catch (error) {
       console.log(error)
     }
@@ -95,7 +94,9 @@ export function SignUp() {
           />
           {errors && <div className={styles.error}>{errors.name?.message}</div>}
         </div>
-        <button type="submit" className={styles.singUpButton}>Sign Up</button>
+        <button type="submit" className={styles.singUpButton}>
+          Sign Up
+        </button>
         <p className={styles.signInText}>
           I already have an account{" "}
           <b

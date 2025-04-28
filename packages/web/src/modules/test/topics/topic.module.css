@@ -97,3 +97,27 @@ td {
 .search button:active {
   opacity: 1;
 }
+
+.actions {
+  border: none;
+  background-color: #6c63ff;
+  border-radius: 2.5rem;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  cursor: pointer;
+  gap: 0.5rem;
+}
+
+.actionImage{
+  width: 2rem;
+}
+
+.actions:hover .actionImage {
+  opacity: 1;
+  transition: all ease 1s;
+  transform: translateX(20%);
+}
