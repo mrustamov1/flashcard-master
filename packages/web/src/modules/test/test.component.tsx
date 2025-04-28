@@ -3,29 +3,12 @@ import flashcard from "../../assets/flashcard.png"
 import userProfile from "../../assets/user-profile.png"
 import card from "../../assets/card.svg"
 import arrowRight from "../../assets/arrow-right.svg"
-import arrowFatLines from "../../assets/arrow-fat-lines-up.svg"
 import { useNavigate } from "react-router-dom"
-import { useState } from "react"
+import arrowFatLine from '../../assets/arrow-fat-lines-up.svg'
 
 export function Test() {
   const navigate = useNavigate()
-  const [cardData, setCardData] = useState<{
-    country: string
-    capital: string
-  } | null>(null)
-  const [flipped, setFlipped] = useState(false)
-
-  const getRandomCountry = async () => {
-    try {
-      const res = await fetch("http://localhost:9090/api/countries")
-      const data = await res.json()
-      setCardData(data)
-      setFlipped(false)
-    } catch (error) {
-      console.error("Failed to fetch country:", error)
-    }
-  }
-
+  
   return (
     <main className={styles.content}>
       <div className={styles.user}>
@@ -77,7 +60,6 @@ export function Test() {
         </div>
       </div>
 
-      {/* Uncomment if needed later
       <div className={styles.answers}>
         <h1 className={styles.title}>Welcome to Flashcard</h1>
         <h3 className={styles.desc}>
@@ -85,20 +67,9 @@ export function Test() {
           quick and effective practice.
         </h3>
         <div className={styles.top}>
-          <img className={styles.arrowFatLines} src={arrowFatLines} alt="Arrow Up" />
+          <img className={styles.arrowFatLines} src={arrowFatLine} alt="Arrow Up" />
         </div>
       </div>
-      */}
-
-      {cardData && (
-        <div
-          className={`${styles.randomCard} ${flipped ? styles.flipped : ""}`}
-          onClick={() => setFlipped(!flipped)}
-        >
-          <div className={styles.cardFront}>{cardData.country}</div>
-          <div className={styles.cardBack}>{cardData.capital}</div>
-        </div>
-      )}
     </main>
   )
 }
