@@ -1,0 +1,291 @@
+.content {
+  padding-top: 3rem;
+  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.user {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logoName {
+  display: flex;
+  gap: 1rem;
+}
+
+.flashcard {
+  width: 4rem;
+  height: 4rem;
+}
+
+.tableContent {
+  border: 0.6px solid #d5d5d5;
+  border-radius: 1.4rem;
+  padding: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead tr {
+  background-color: #f9f9fa;
+  border-radius: 1.4rem;
+  border-bottom: 0.6px solid #d5d5d5;
+}
+
+tbody tr {
+  border-bottom: 0.6px solid #d5d5d5;
+  border-radius: 1.4rem;
+  background-color: #ffffff;
+}
+
+thead th:first-child {
+  border-top-left-radius: 1.4rem;
+}
+
+thead th:last-child {
+  border-top-right-radius: 1.4rem;
+}
+
+tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 1.4rem;
+}
+
+tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 1.4rem;
+}
+
+tbody tr:last-child {
+  border: none;
+}
+
+th {
+  font-weight: 700;
+  font-size: 1.4rem;
+  padding: 1.5rem 3rem;
+  text-align: left;
+}
+
+td {
+  font-size: 1.4rem;
+  padding: 1.5rem 3rem;
+}
+
+.search {
+  display: flex;
+  gap: 1rem;
+}
+
+.search button {
+  background-color: #6c63ff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0 10rem;
+  color: #ffffff;
+  font-size: 1.7rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.search button:hover {
+  opacity: 0.6;
+}
+.search button:active {
+  opacity: 1;
+}
+
+.actions {
+  border: none;
+  background-color: #6c63ff;
+  border-radius: 2.5rem;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  cursor: pointer;
+  gap: 0.5rem;
+}
+
+.actionImage {
+  width: 2rem;
+}
+
+.actions:hover .actionImage {
+  opacity: 1;
+  transition: all ease 1s;
+  transform: translateX(20%);
+}
+
+.title {
+  font-size: 4rem;
+}
+
+.desc {
+  max-width: 60rem;
+  text-align: center;
+}
+
+.arrowRight {
+  opacity: 0;
+}
+
+.card:hover .arrowRight {
+  opacity: 1;
+  transform: translateX(50%);
+  transition: all ease 1s;
+}
+
+.top {
+  margin-top: 2rem;
+  padding: 2rem;
+  cursor: pointer;
+  background-color: #f6f7fb;
+  border-radius: 50%;
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.05),
+    0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.arrowFatLines {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.top:hover .arrowFatLines {
+  transform: translateY(-30%);
+  transition: all ease 1s;
+}
+
+.answers {
+  perspective: 1000px;
+  cursor: pointer;
+  position: relative;
+  width: 100%;
+  background-color: #f6f7fb;
+  border-radius: 1rem;
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.05),
+    0 8px 16px rgba(0, 0, 0, 0.1);
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cardFront,
+.cardBack {
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #6c63ff;
+  border-radius: 1rem;
+  color: white;
+  font-size: 4rem;
+  transition: transform 0.8s;
+}
+
+.cardBack {
+  transform: rotateY(180deg);
+  background: #5e54d8;
+}
+
+.flipped .cardFront {
+  transform: rotateY(180deg);
+}
+
+.flipped .cardBack {
+  transform: rotateY(360deg);
+}
+
+.progress {
+  text-align: center;
+  font-size: 20px;
+  margin: 20px 0;
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+}
+
+.knowButton {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.dontKnowButton {
+  background-color: #f44336;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.startButton {
+  margin-top: 30px;
+  padding: 12px 24px;
+  font-size: 18px;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.navigationButtons {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.prevButton,
+.nextButton {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+}
+
+.b {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+
+.navigationButtons img{
+    padding: 0.5rem;
+}
+
+.navigationButtons img:hover{
+    background-color: #ECECEC;
+    border-radius: 8px;
+    padding: 0.5rem;
+}

@@ -1,6 +1,7 @@
 import styles from "./topic.module.css"
 import flashcard from "../../../assets/flashcard.png"
 import userProfile from "../../../assets/user-profile.png"
+import arrowRight from "../../../assets/arrow-right-white.svg"
 const filteredTopics = [
   {
     id: 1,
@@ -47,7 +48,11 @@ export function Topics() {
               <tr key={index}>
                 <td>{topic.id}</td>
                 <td>{topic.name}</td>
-                <td>{topic.actions}</td>
+                <td>
+                  <button className={styles.actions}>
+                    {topic.actions} <img className={styles.actionImage} src={arrowRight} alt="" />
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

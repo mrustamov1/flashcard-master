@@ -24,8 +24,7 @@ export function SignIn() {
         return false
       }
 
-      const result = await response.json()
-      console.log("Login success:", result)
+      await response.json()
       navigate("/test")
     } catch (error) {
       console.log(error)
