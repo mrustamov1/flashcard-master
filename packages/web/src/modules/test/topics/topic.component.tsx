@@ -2,25 +2,34 @@ import styles from "./topic.module.css"
 import flashcard from "../../../assets/flashcard.png"
 import userProfile from "../../../assets/user-profile.png"
 import arrowRight from "../../../assets/arrow-right-white.svg"
-const filteredTopics = [
-  {
-    id: 1,
-    name: "Art",
-    actions: "Press to choose",
-  },
-  {
-    id: 2,
-    name: "Nature",
-    actions: "Press to choose",
-  },
-  {
-    id: 3,
-    name: "Countries",
-    actions: "Press to choose",
-  },
-]
+import { useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react"
 
 export function Topics() {
+  const [categories, setCategories] = useState<{ id: number; name: string }[]>(
+    [],
+  )
+  const navigate = useNavigate()
+
+  // Fetch categories from OpenTDB
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await fetch("https://opentdb.com/api_category.php")
+        const data = await res.json()
+        setCategories(data.trivia_categories) // The categories come in `trivia_categories`
+      } catch (error) {
+        console.error("Failed to fetch categories:", error)
+      }
+    }
+
+    fetchCategories()
+  }, [])
+
+  const handleChooseTopic = (categoryId: number) => {
+    navigate(`/test-section/${categoryId}`)
+  }
+
   return (
     <main className={styles.content}>
       <div className={styles.user}>
@@ -44,13 +53,21 @@ export function Topics() {
             </tr>
           </thead>
           <tbody>
-            {filteredTopics.map((topic, index) => (
-              <tr key={index}>
+            {categories.map((topic) => (
+              <tr key={topic.id}>
                 <td>{topic.id}</td>
                 <td>{topic.name}</td>
                 <td>
-                  <button className={styles.actions}>
-                    {topic.actions} <img className={styles.actionImage} src={arrowRight} alt="" />
+                  <button
+                    className={styles.actions}
+                    onClick={() => handleChooseTopic(topic.id)}
+                  >
+                    Press to choose{" "}
+                    <img
+                      className={styles.actionImage}
+                      src={arrowRight}
+                      alt=""
+                    />
                   </button>
                 </td>
               </tr>

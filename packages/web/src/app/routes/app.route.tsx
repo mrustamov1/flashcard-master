@@ -14,7 +14,7 @@ export function AppRoutes() {
       <Route element={<ProtectedRoute />}>
         <Route path="/test" element={<Test />} />
         <Route path="/topics" element={<Topics />} />
-        <Route path="/test-section" element={<TestSection />} />
+        <Route path="/test-section/:id" element={<TestSection />} />
       </Route>
       <Route path="/sign-up" element={<SignUp />} />
       <Route path="/sign-in" element={<SignIn />} />

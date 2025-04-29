@@ -165,19 +165,24 @@ td {
 
 .answers {
   perspective: 1000px;
+  width: 100%;
+  height: 60vh;
   cursor: pointer;
   position: relative;
+  background-color: transparent;
+  padding: 2rem;
+}
+
+.cardInner {
   width: 100%;
-  background-color: #f6f7fb;
-  border-radius: 1rem;
-  box-shadow:
-    0 4px 8px rgba(0, 0, 0, 0.05),
-    0 8px 16px rgba(0, 0, 0, 0.1);
-  height: 60vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s;
+}
+
+.flipped .cardInner {
+  transform: rotateX(180deg);
 }
 
 .cardFront,
@@ -188,27 +193,19 @@ td {
   position: absolute;
   top: 0;
   left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background: #6c63ff;
   border-radius: 1rem;
   color: white;
-  font-size: 4rem;
-  transition: transform 0.8s;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
 }
 
 .cardBack {
-  transform: rotateY(180deg);
   background: #5e54d8;
-}
-
-.flipped .cardFront {
-  transform: rotateY(180deg);
-}
-
-.flipped .cardBack {
-  transform: rotateY(360deg);
+  transform: rotateX(180deg);
 }
 
 .progress {
@@ -275,7 +272,7 @@ td {
 
 .b {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
 }
 
