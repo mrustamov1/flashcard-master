@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom"
 import styles from "./sign-up.module.css"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { UserRegisterType } from "../../types/user.type"
+import { Input } from "../../ui-components/input/input.component"
 
 export function SignUp() {
   const navigate = useNavigate()
@@ -23,7 +24,8 @@ export function SignUp() {
         console.log("Invalid email or password")
         return false
       }
-      await response.json()
+      const result = await response.json()
+      localStorage.setItem("currentUser", JSON.stringify(result))
       navigate("/test")
     } catch (error) {
       console.log(error)
@@ -34,66 +36,51 @@ export function SignUp() {
       <form className={styles.container} onSubmit={handleSubmit(onSubmit)}>
         <h1 className={styles.title}>Sign Up </h1>
         <div className={styles.starterInputs}>
-          <div className={styles.inputAndLabel}>
-            <label htmlFor="">Enter your name</label>
-            <input
-              {...register("name", {
-                required: "All field are required",
-              })}
-              type="text"
-              placeholder="Name..."
-            />
-            {errors && (
-              <div className={styles.error}>{errors.name?.message}</div>
-            )}
-          </div>
-
-          <div className={styles.inputAndLabel}>
-            <label htmlFor="">Enter your surname</label>
-            <input
-              {...register("surname", {
-                required: "All field are required",
-              })}
-              type="text"
-              placeholder="Surname..."
-            />
-            {errors && (
-              <div className={styles.error}>{errors.name?.message}</div>
-            )}
-          </div>
-        </div>
-        <div className={styles.inputAndLabel}>
-          <label htmlFor="">Enter your email address</label>
-          <input
-            {...register("email", {
-              required: "Enter valid email address",
-              pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-            })}
-            type="text"
-            placeholder="Email address..."
-          />
-          {errors && <div className={styles.error}>{errors.name?.message}</div>}
-        </div>
-        <div className={styles.inputAndLabel}>
-          <label htmlFor="">Enter your password</label>
-          <input
-            {...register("password", {
+          <Input
+            label="Enter your name"
+            {...register("name", {
               required: "All field are required",
             })}
             type="text"
-            placeholder="Password..."
+            placeholder="Name..."
+            error={errors.name?.message}
           />
-          {errors && <div className={styles.error}>{errors.name?.message}</div>}
-        </div>
-        <div className={styles.inputAndLabel}>
-          <label htmlFor="">Confirm your password</label>
-          <input
-            {...register("confirmPassword")}
+
+          <Input
+            label="Enter your surname"
+            {...register("surname", {
+              required: "All field are required",
+            })}
             type="text"
-            placeholder="Confirm password..."
+            placeholder="Surname..."
+            error={errors.surname?.message}
           />
-          {errors && <div className={styles.error}>{errors.name?.message}</div>}
         </div>
+        <Input
+          label="Enter your email address"
+          {...register("email", {
+            required: "Enter valid email address",
+            pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+          })}
+          type="email"
+          placeholder="Email address..."
+          error={errors.email?.message}
+        />
+        <Input
+          label="Enter your password"
+          {...register("password", {
+            required: "All field are required",
+          })}
+          type="password"
+          placeholder="Password..."
+          error={errors.password?.message}
+        />
+        <Input
+          label="Confirm your password"
+          {...register("confirmPassword")}
+          type="password"
+          placeholder="Confirm password..."
+        />
         <button type="submit" className={styles.singUpButton}>
           Sign Up
         </button>

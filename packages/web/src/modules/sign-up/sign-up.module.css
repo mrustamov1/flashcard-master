@@ -10,7 +10,7 @@
 .container {
   border-radius: 1rem;
   padding: 4rem;
-  gap: 2rem;
+  gap: 3rem;
   display: flex;
   flex-direction: column;
   box-shadow:
@@ -21,11 +21,6 @@
 
 .title {
   text-align: center;
-}
-.inputAndLabel {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
 }
 
 .starterInputs {
@@ -63,9 +58,4 @@
   text-decoration: underline;
   transition: all ease 0.5s;
   color: #6c63ff;
-}
-
-.error {
-  font-size: 1.5rem;
-  color: #990000;
 }
