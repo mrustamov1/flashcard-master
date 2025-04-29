@@ -1,7 +1,8 @@
-import { SubmitHandler, useForm } from "react-hook-form"
 import styles from "./sign-in.module.css"
 import { useNavigate } from "react-router-dom"
 import { UserLoginType } from "../../types/user.type"
+import { SubmitHandler, useForm } from "react-hook-form"
+import { Input } from "../../ui-components/input/input.component"
 
 export function SignIn() {
   const navigate = useNavigate()
@@ -10,6 +11,7 @@ export function SignIn() {
     handleSubmit,
     formState: { errors },
   } = useForm<UserLoginType>()
+
   const onSubmit: SubmitHandler<UserLoginType> = async (data) => {
     try {
       const response = await fetch("http://localhost:9090/user/auth/login", {
@@ -30,38 +32,30 @@ export function SignIn() {
       console.log(error)
     }
   }
+
   return (
     <section className={styles.content}>
       <form className={styles.container} onClick={handleSubmit(onSubmit)}>
         <h1 className={styles.title}>Sign In </h1>
-        <div className={styles.inputAndLabel}>
-          <label htmlFor="">Enter your email address</label>
-          <input
-            {...register("email", {
-              required: "Enter valid email address",
-              pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-            })}
-            type="text"
-            placeholder="Email address..."
-          />
-          {errors && (
-            <div className={styles.error}>{errors.email?.message}</div>
-          )}
-        </div>
-        <div className={styles.inputAndLabel}>
-          <label htmlFor="">Enter your password</label>
-          <input
-            {...register("password", {
-              required: true,
-              minLength: 8,
-            })}
-            type="text"
-            placeholder="Password..."
-          />
-          {errors && (
-            <div className={styles.error}>{errors.email?.message}</div>
-          )}
-        </div>
+        <Input
+          label="Enter your email address"
+          {...register("email", {
+            required: "Enter valid email address",
+            pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+          })}
+          type="text"
+          placeholder="Email address..."
+          error={errors.email?.message}
+        />
+        <Input
+          label="Enter your password"
+          {...register("password", {
+            required: "All fields are required",
+          })}
+          type="text"
+          placeholder="Email address..."
+          error={errors.password?.message}
+        />
         <button type="submit" className={styles.singUpButton}>
           Sign In
         </button>
@@ -71,7 +65,6 @@ export function SignIn() {
             className={styles.directSingUp}
             onClick={() => navigate("/sign-up")}
           >
-            {" "}
             Sign Up
           </b>
         </p>

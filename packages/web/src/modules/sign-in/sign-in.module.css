@@ -10,7 +10,7 @@
 .container {
   border-radius: 1rem;
   padding: 4rem;
-  gap: 2rem;
+  gap: 3rem;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -59,9 +59,4 @@
   text-decoration: underline;
   transition: all ease 0.5s;
   color: #6c63ff;
-}
-
-.error {
-  font-size: 1.5rem;
-  color: #990000;
 }
