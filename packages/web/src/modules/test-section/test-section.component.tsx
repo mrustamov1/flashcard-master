@@ -1,54 +1,53 @@
+import { useState, useEffect } from "react"
 import styles from "./test-section.module.css"
 import flashcard from "../../assets/flashcard.png"
-import userProfile from "../../assets/user-profile.png"
-import { useState, useEffect } from "react"
 import arrowLeft from "../../assets/arrow-left.svg"
 import arrowRight from "../../assets/arrow-right.svg"
+import userProfile from "../../assets/user-profile.png"
+import { useParams } from "react-router-dom"
 
 export function TestSection() {
-  const [allCountries, setAllCountries] = useState<
-    { country: string; capital: string }[]
-  >([])
+  const { id } = useParams()
   const [currentQuestion, setCurrentQuestion] = useState(0) // Start from 0 index
   const [flipped, setFlipped] = useState(false)
   const totalQuestions = 20
+  const [questions, setQuestions] = useState<
+    { question: string; correct_answer: string; incorrect_answers: string[] }[]
+  >([])
 
   useEffect(() => {
-    const fetchCountries = async () => {
+    const fetchTriviaQuestions = async () => {
       try {
-        const res = await fetch("https://restcountries.com/v3.1/all")
+        const category = id // fallback to General Knowledge
+        const res = await fetch(
+          `https://opentdb.com/api.php?amount=${totalQuestions}&category=${category}`,
+        )
         const data = await res.json()
-        const mapped = data.map((country: any) => ({
-          country: country.name.common,
-          capital: country.capital ? country.capital[0] : "No Capital",
-        }))
-        // Shuffle the array and pick first 20 countries
-        const shuffled = mapped
-          .sort(() => 0.5 - Math.random())
-          .slice(0, totalQuestions)
-        setAllCountries(shuffled)
+        setQuestions(data.results)
       } catch (error) {
-        console.error("Failed to fetch countries:", error)
+        console.error("Failed to fetch trivia questions:", error)
       }
     }
-    fetchCountries()
-  }, [])
 
-  const handleNext = () => {
-    if (currentQuestion < totalQuestions - 1) {
-      setCurrentQuestion((prev) => prev + 1)
-      setFlipped(false)
-    } else {
-      alert("You have completed all questions!")
-      // Optionally, restart or navigate somewhere
-    }
-  }
+    fetchTriviaQuestions()
+  }, [id])
 
   const handlePrev = () => {
     if (currentQuestion > 0) {
       setCurrentQuestion((prev) => prev - 1)
       setFlipped(false)
     }
+  }
+  const handleNext = () => {
+    setFlipped(false)
+    // Add delay so the flip reset happens before the next question shows
+    setTimeout(() => {
+      if (currentQuestion < totalQuestions - 1) {
+        setCurrentQuestion((prev) => prev + 1)
+      } else {
+        alert("You have completed all questions!")
+      }
+    }, 300) // 300ms is usually enough
   }
 
   const handleKnowIt = () => {
@@ -75,25 +74,33 @@ export function TestSection() {
       </div>
 
       {/* If countries are loaded */}
-      {allCountries.length > 0 && (
+      {questions.length > 0 && (
         <div className={styles.cardContainer}>
           <div
             className={`${styles.answers} ${flipped ? styles.flipped : ""}`}
             onClick={() => setFlipped(true)}
           >
-            <div>
+            <div className={styles.cardInner}>
               <div className={styles.cardFront}>
-                {allCountries[currentQuestion].country}
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: questions[currentQuestion].question,
+                  }}
+                />
               </div>
               <div className={styles.cardBack}>
-                {allCountries[currentQuestion].capital}
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: questions[currentQuestion].correct_answer,
+                  }}
+                />
               </div>
             </div>
           </div>
 
           {/* Show buttons after flipping */}
           <div className={styles.b}>
-            {flipped && (
+            {flipped ? (
               <div className={styles.buttons}>
                 <button className={styles.knowButton} onClick={handleKnowIt}>
                   I know it
@@ -105,19 +112,18 @@ export function TestSection() {
                   I don't know it
                 </button>
               </div>
+            ) : (
+              <div className={styles.navigationButtons}>
+                <img src={arrowLeft} alt="" onClick={handlePrev} />
+                <img src={arrowRight} alt="" onClick={handleNext} />
+              </div>
             )}
-
-            {/* Prev and Next Buttons */}
-            <div className={styles.navigationButtons}>
-              <img src={arrowLeft} alt="" onClick={handlePrev} />
-              <img src={arrowRight} alt="" onClick={handleNext} />
-            </div>
           </div>
         </div>
       )}
 
-      {allCountries.length === 0 && (
-        <div className={styles.loading}>Loading countries...</div>
+      {questions.length === 0 && (
+        <div className={styles.loading}>Loading trivia questions...</div>
       )}
     </main>
   )

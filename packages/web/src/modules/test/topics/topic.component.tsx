@@ -2,25 +2,44 @@ import styles from "./topic.module.css"
 import flashcard from "../../../assets/flashcard.png"
 import userProfile from "../../../assets/user-profile.png"
 import arrowRight from "../../../assets/arrow-right-white.svg"
-const filteredTopics = [
-  {
-    id: 1,
-    name: "Art",
-    actions: "Press to choose",
-  },
-  {
-    id: 2,
-    name: "Nature",
-    actions: "Press to choose",
-  },
-  {
-    id: 3,
-    name: "Countries",
-    actions: "Press to choose",
-  },
-]
+import { useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react"
 
 export function Topics() {
+  const navigate = useNavigate()
+  const [categories, setCategories] = useState<{ id: number; name: string }[]>(
+    [],
+  )
+  const [query, setQuery] = useState("")
+  const [search, setSearch] = useState("")
+
+  const filteredItems = categories.filter((item) => {
+    return item.name.toLowerCase().includes(search.toLowerCase())
+  })
+
+  function handleSearch() {
+    setSearch(query)
+  }
+
+  // Fetch categories from OpenTDB
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await fetch("https://opentdb.com/api_category.php")
+        const data = await res.json()
+        setCategories(data.trivia_categories) // The categories come in `trivia_categories`
+      } catch (error) {
+        console.error("Failed to fetch categories:", error)
+      }
+    }
+
+    fetchCategories()
+  }, [])
+
+  const handleChooseTopic = (categoryId: number) => {
+    navigate(`/test-section/${categoryId}`)
+  }
+
   return (
     <main className={styles.content}>
       <div className={styles.user}>
@@ -31,8 +50,13 @@ export function Topics() {
         <img width={50} height={50} src={userProfile} alt="User" />
       </div>
       <article className={styles.search}>
-        <input type="text" placeholder="Search..." />
-        <button>Search</button>
+        <input
+          value={query}
+          type="text"
+          placeholder="Search..."
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <button onClick={handleSearch}>Search</button>
       </article>
       <div className={styles.tableContent}>
         <table>
@@ -44,13 +68,21 @@ export function Topics() {
             </tr>
           </thead>
           <tbody>
-            {filteredTopics.map((topic, index) => (
-              <tr key={index}>
+            {filteredItems.map((topic) => (
+              <tr key={topic.id}>
                 <td>{topic.id}</td>
                 <td>{topic.name}</td>
                 <td>
-                  <button className={styles.actions}>
-                    {topic.actions} <img className={styles.actionImage} src={arrowRight} alt="" />
+                  <button
+                    className={styles.actions}
+                    onClick={() => handleChooseTopic(topic.id)}
+                  >
+                    Press to choose{" "}
+                    <img
+                      className={styles.actionImage}
+                      src={arrowRight}
+                      alt=""
+                    />
                   </button>
                 </td>
               </tr>
