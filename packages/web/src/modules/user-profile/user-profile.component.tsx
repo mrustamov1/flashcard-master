@@ -8,6 +8,7 @@ export function UserProfile() {
   const [hover, setHover] = useState(false)
   const [hoverEdit, setHoverEdit] = useState(false)
   const navigate = useNavigate()
+  
   return (
     <main className={styles.content}>
       <i
