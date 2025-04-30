@@ -31,7 +31,7 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
   width: 100%;
   background-color: #f6f7fb;
   border-radius: 1rem;
@@ -92,4 +92,59 @@
 .top:hover .arrowFatLines {
   transform: translateY(-30%);
   transition: all ease 1s;
+}
+
+
+
+.userTooltipContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.userIcon img {
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+/* Tooltip menu: hidden by default */
+.tooltipMenu {
+  display: none;
+  position: absolute;
+  top: 60px; /* space below icon */
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 18rem;
+  z-index: 100;
+}
+
+.tooltipMenu::before {
+  content: "";
+  position: absolute;
+  top: -8px; /* Position it above the box */
+  right: 16px; /* Align with icon (adjust if needed) */
+  border-width: 0 8px 8px 8px;
+  border-style: solid;
+  border-color: transparent transparent #fff transparent; /* white arrow */
+}
+
+/* Menu item styling */
+.tooltipItem {
+  padding: 10px 16px;
+  gap: 1rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.tooltipItem:hover {
+  background-color: #f0f0f0;
+}
+
+/* Show tooltip menu on hover */
+.userTooltipContainer:hover .tooltipMenu {
+  display: block;
 }

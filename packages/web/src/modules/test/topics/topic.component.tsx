@@ -6,10 +6,20 @@ import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 
 export function Topics() {
+  const navigate = useNavigate()
   const [categories, setCategories] = useState<{ id: number; name: string }[]>(
     [],
   )
-  const navigate = useNavigate()
+  const [query, setQuery] = useState("")
+  const [search, setSearch] = useState("")
+
+  const filteredItems = categories.filter((item) => {
+    return item.name.toLowerCase().includes(search.toLowerCase())
+  })
+
+  function handleSearch() {
+    setSearch(query)
+  }
 
   // Fetch categories from OpenTDB
   useEffect(() => {
@@ -40,8 +50,13 @@ export function Topics() {
         <img width={50} height={50} src={userProfile} alt="User" />
       </div>
       <article className={styles.search}>
-        <input type="text" placeholder="Search..." />
-        <button>Search</button>
+        <input
+          value={query}
+          type="text"
+          placeholder="Search..."
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <button onClick={handleSearch}>Search</button>
       </article>
       <div className={styles.tableContent}>
         <table>
@@ -53,7 +68,7 @@ export function Topics() {
             </tr>
           </thead>
           <tbody>
-            {categories.map((topic) => (
+            {filteredItems.map((topic) => (
               <tr key={topic.id}>
                 <td>{topic.id}</td>
                 <td>{topic.name}</td>
