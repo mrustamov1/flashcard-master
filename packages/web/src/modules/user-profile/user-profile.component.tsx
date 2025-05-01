@@ -5,9 +5,9 @@ import { Input } from "../../ui-components/input/input.component"
 import { useNavigate } from "react-router-dom"
 
 export function UserProfile() {
-  const [hover, setHover] = useState(false)
-  const [hoverEdit, setHoverEdit] = useState(false)
-  const navigate = useNavigate()
+  const [hover, setHover] = useState(false);
+  const [hoverEdit, setHoverEdit] = useState(false);
+  const navigate = useNavigate();
   
   return (
     <main className={styles.content}>
