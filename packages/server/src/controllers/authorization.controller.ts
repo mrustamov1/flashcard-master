@@ -1,11 +1,12 @@
-import { LoginModel, RegistrationModel } from "../models/user.model.js"
-import { Request, Response } from "express"
-import { SchemaUtiles } from "../utiles/schema.utile.js"
-import { AuthSchema } from "../schema/auth.schema.js"
-import { DataSourceUtils } from "../utiles/data-source.utile.js"
-import { UserEntity } from "../entities/user.entity.js"
 import bcrypt from "bcrypt"
+import { Request, Response } from "express"
 import { UserType } from "../types/user.type.js"
+import { AuthSchema } from "../schema/auth.schema.js"
+import { UserEntity } from "../entities/user.entity.js"
+import { SchemaUtiles } from "../utiles/schema.utile.js"
+import { DataSourceUtils } from "../utiles/data-source.utile.js"
+import { LoginModel, RegistrationModel } from "../models/user.model.js"
+import { TokenUtils } from "../utiles/token.utiles.js"
 
 export const AuthorizationController = {
   async register(
@@ -33,7 +34,12 @@ export const AuthorizationController = {
         created_at: Date.now(),
         updated_at: Date.now(),
       })
-      res.status(200).send({ id: user.id })
+      res.status(200).send({
+        id: user.id,
+        name: user.name,
+        surname: user.surname,
+        email: user.email,
+      })
     } catch (error) {
       res.status(501).send(error)
     }
@@ -53,8 +59,25 @@ export const AuthorizationController = {
       } else {
         console.log(user)
       }
-      res.status(200).send({ id: user.id })
+
+      const tokens = TokenUtils.generate({ id: user.id })
+
+      await DataSourceUtils.update<UserType>(UserEntity, {
+        id: user.id,
+        token: tokens.refresh,
+        updated_at: Date.now(),
+      })
+
+      res.status(200).send({
+        id: user.id,
+        name: user.name,
+        surname: user.surname,
+        email: user.email,
+        photo: user.photo,
+        tokens: JSON.stringify(tokens),
+      })
     } catch (error) {
+      res.status(500).send({ error: "Server error" })
       console.log(error)
     }
   },

@@ -12,12 +12,12 @@ export function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route element={<ProtectedRoute />}>
+      {/* <Route element={<ProtectedRoute />}> */}
         <Route path="/test" element={<Test />} />
         <Route path="/topics" element={<Topics />} />
         <Route path="/test-section/:id" element={<TestSection />} />
         <Route path="/user-profile" element={<UserProfile />} />
-      </Route>
+      {/* </Route> */}
       <Route path="/sign-up" element={<SignUp />} />
       <Route path="/sign-in" element={<SignIn />} />
     </Routes>

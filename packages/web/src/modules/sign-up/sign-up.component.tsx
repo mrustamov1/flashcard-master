@@ -24,8 +24,16 @@ export function SignUp() {
         console.log("Invalid email or password")
         return false
       }
-      const result = await response.json()
-      localStorage.setItem("currentUser", JSON.stringify(result))
+      const userData = await response.json()
+      localStorage.setItem(
+        "userDetails",
+        JSON.stringify({
+          id: userData.id,
+          name: userData.name,
+          surname: userData.surname,
+          email: userData.email,
+        }),
+      )
       navigate("/test")
     } catch (error) {
       console.log(error)

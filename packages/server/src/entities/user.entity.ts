@@ -15,6 +15,13 @@ export class UserEntity implements UserType {
   @Column({ type: "varchar", nullable: false })
   name!: string
 
+  @Column({ type: "varchar", nullable: true, default: null })
+  photo!: string | null
+
+  
+  @Column({ type: "varchar", nullable: true, default: null })
+  token!: string | null
+
   @Column({ type: "varchar", nullable: false })
   surname!: string
 
