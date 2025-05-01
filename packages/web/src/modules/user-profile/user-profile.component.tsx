@@ -1,14 +1,87 @@
 import { useState } from "react"
 import styles from "./user-profile.module.css"
-import user from "../../assets/user-profile.png"
-import { Input } from "../../ui-components/input/input.component"
 import { useNavigate } from "react-router-dom"
+import { Chart } from "./chart/chart.component"
+import user from "../../assets/user-profile.png"
+import { Settings } from "./settings/setting.component"
+import { Progress } from "./progress/progress.component"
+import { Input } from "../../ui-components/input/input.component"
 
 export function UserProfile() {
-  const [hover, setHover] = useState(false);
-  const [hoverEdit, setHoverEdit] = useState(false);
-  const navigate = useNavigate();
-  
+  const navigate = useNavigate()
+  const [hover, setHover] = useState(false)
+  const [hoverEdit, setHoverEdit] = useState(false)
+  const [selectedTab, setSelectedTab] = useState("profile")
+
+  const tabs = [
+    { label: "Profile", key: "profile" },
+    { label: "Settings", key: "settings" },
+    { label: "Progress", key: "progress" },
+    { label: "Chart", key: "chart" },
+  ]
+
+  const renderContent = () => {
+    switch (selectedTab) {
+      case "profile":
+        return (
+          <section className={styles.userCard}>
+            <div className={styles.card}>
+              <div className={styles.userSideBar}>
+                <img src={user} alt="User" />
+                <h1>Muhammad Rustamov</h1>
+                <h1>Software Engineer</h1>
+                <div
+                  className={hoverEdit ? styles.hovered : styles.default}
+                  onMouseEnter={() => setHoverEdit(true)}
+                  onMouseLeave={() => setHoverEdit(false)}
+                >
+                  <h3 style={{ color: "#FFFFFF" }}>Edit</h3>
+                  <i
+                    style={{ color: "#FFFFFF" }}
+                    className={
+                      hoverEdit ? "fa-solid fa-pen" : "fa-solid fa-edit"
+                    }
+                  ></i>
+                </div>
+              </div>
+              <div className={styles.personalInfo}>
+                <span className={styles.infoTitle}>Personal information</span>
+                <div className={styles.inputs}>
+                  <Input label="Name" type="text" placeholder="Name..." />
+                  <Input label="Surname" type="text" placeholder="Surname..." />
+                  <Input label="Email" type="email" placeholder="Email..." />
+                  <Input label="Phone number" type="tel" placeholder="(+)" />
+                  <Input label="Role" type="text" placeholder="Role..." />
+                  <Input
+                    label="Profession"
+                    type="textarea"
+                    placeholder="Profession..."
+                  />
+                </div>
+                <div>
+                  <label className={styles.aboutMeLabel} htmlFor="">
+                    About me
+                  </label>
+                  <textarea
+                    rows={7}
+                    placeholder="Tell me something about yourself"
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
+        )
+      case "settings":
+        return <Settings />
+      case "progress":
+        return <Progress />
+      case "chart":
+        return <Chart />
+      default:
+        return null
+    }
+  }
+
   return (
     <main className={styles.content}>
       <i
@@ -21,43 +94,20 @@ export function UserProfile() {
         }
       ></i>
       <section className={styles.userHeaderInfo}>
-        <span>Profile</span>
-        <span>Settings</span>
-        <span>Progress</span>
-        <span>Chart</span>
-      </section>
-      <section className={styles.userCard}>
-        <div className={styles.card}>
-          <div className={styles.userSideBar}>
-            <img src={user} alt="User" />
-            <h1>Muhammad Rustamov</h1>
-            <h1>Software Engineer</h1>
-            <div
-              className={hoverEdit ? styles.hovered : styles.default}
-              onMouseEnter={() => setHoverEdit(true)}
-              onMouseLeave={() => setHoverEdit(false)}
-            >
-              <h3 style={{ color: "#FFFFFF" }}>Edit</h3>
-              <i
-                style={{ color: "#FFFFFF" }}
-                className={hoverEdit ? "fa-solid fa-pen" : "fa-solid fa-edit"}
-              ></i>
-            </div>
+        {tabs.map((tab, index) => (
+          <div
+            key={index}
+            className={styles.headerDirection}
+            onClick={() => setSelectedTab(tab.key)}
+            style={{
+              color: selectedTab === tab.key ? "#6c63ff" : "#212121",
+            }}
+          >
+            <span>{tab.label}</span>
           </div>
-          <div className={styles.personalInfo}>
-            <span className={styles.infoTitle}>Personal information</span>
-            <div className={styles.inputs}>
-              <Input label="Name" type="text" />
-              <Input label="Surname" type="text" />
-              <Input label="Email" type="email" />
-              <Input label="Phone number" type="tel" />
-              <Input label="Role" type="text" />
-              <Input label="Profession" type="text" />
-            </div>
-            <textarea rows={7} placeholder="hello" />
-          </div>
-        </div>
+        ))}
       </section>
+      {renderContent()}
     </main>
   )
 }
