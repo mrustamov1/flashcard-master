@@ -1,10 +1,10 @@
 import { useState } from "react"
 import styles from "./user-profile.module.css"
 import { useNavigate } from "react-router-dom"
-import { Chart } from "./chart/chart.component"
+// import { Chart } from "./chart/chart.component"
 import user from "../../assets/user-profile.png"
-import { Settings } from "./settings/setting.component"
-import { Progress } from "./progress/progress.component"
+// import { Settings } from "./settings/setting.component"
+// import { Progress } from "./progress/progress.component"
 import { Input } from "../../ui-components/input/input.component"
 
 export function UserProfile() {
@@ -15,9 +15,9 @@ export function UserProfile() {
 
   const tabs = [
     { label: "Profile", key: "profile" },
-    { label: "Settings", key: "settings" },
-    { label: "Progress", key: "progress" },
-    { label: "Chart", key: "chart" },
+    // { label: "Settings", key: "settings" },
+    // { label: "Progress", key: "progress" },
+    // { label: "Chart", key: "chart" },
   ]
 
   const renderContent = () => {
@@ -71,12 +71,12 @@ export function UserProfile() {
             </div>
           </section>
         )
-      case "settings":
-        return <Settings />
-      case "progress":
-        return <Progress />
-      case "chart":
-        return <Chart />
+      // case "settings":
+      //   return <Settings />
+      // case "progress":
+      //   return <Progress />
+      // case "chart":
+      //   return <Chart />
       default:
         return null
     }
