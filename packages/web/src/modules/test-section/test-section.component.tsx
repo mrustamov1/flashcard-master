@@ -86,7 +86,7 @@ export function TestSection() {
                   dangerouslySetInnerHTML={{
                     __html: questions[currentQuestion].question,
                   }}
-                />
+                ></div>
               </div>
               <div className={styles.cardBack}>
                 <div
@@ -97,6 +97,8 @@ export function TestSection() {
               </div>
             </div>
           </div>
+
+          <div className={styles.flipeCard}>Flip to see the answer</div>
 
           {/* Show buttons after flipping */}
           <div className={styles.b}>

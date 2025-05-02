@@ -62,8 +62,7 @@
   width: 12rem;
   padding-bottom: 2rem;
 }
-.userSideBar,
-h1 {
+.userSideBar h1 {
   color: #ffffff;
 }
 

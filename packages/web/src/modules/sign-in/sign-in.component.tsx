@@ -26,7 +26,15 @@ export function SignIn() {
         return false
       }
 
-      await response.json()
+      const { id, name, surname, email } = await response.json()
+      localStorage.setItem(
+        "userDetails",
+        JSON.stringify({ id, name, surname, email }),
+      )
+
+      const { access } = await response.json()
+      localStorage.setItem("accessToken", access)
+
       navigate("/test")
     } catch (error) {
       console.log(error)
