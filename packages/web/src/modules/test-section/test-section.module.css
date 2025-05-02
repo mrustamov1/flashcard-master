@@ -193,7 +193,7 @@ td {
   position: absolute;
   top: 0;
   left: 0;
-  background: #6c63ff;
+  background: #5e54d8;
   border-radius: 1rem;
   color: white;
   font-size: 2rem;
@@ -206,7 +206,17 @@ td {
 
 .flipeCard{
   position: absolute;
-  top: 90%;
+  top: 80%;
+  background: linear-gradient(#6c63ff, #836fff, #a393ff);
+  max-width: 1255px;
+  margin: 0 auto;
+  width: 100%;
+  border-radius: 8px;
+  display: flex;
+  color: #FFFFFF;
+  font-size: 14px;
+  padding: 0.35rem 0;
+  justify-content: center;
 }
 .cardBack {
   background: #5e54d8;
