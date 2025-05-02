@@ -15,22 +15,20 @@ export function TestSection() {
     { question: string; correct_answer: string; incorrect_answers: string[] }[]
   >([])
 
-  useEffect(() => {
-    const fetchTriviaQuestions = async () => {
-      try {
+  async function fetchTriviaQuestions() {
+    try {
         const category = id // fallback to General Knowledge
         const res = await fetch(
           `https://opentdb.com/api.php?amount=${totalQuestions}&category=${category}`,
         )
         const data = await res.json()
         setQuestions(data.results)
-      } catch (error) {
-        console.error("Failed to fetch trivia questions:", error)
-      }
+    } catch (error) {
+      console.error("Failed to fetch trivia questions:", error)
     }
+  }
 
-    fetchTriviaQuestions()
-  }, [id])
+  fetchTriviaQuestions()
 
   const handlePrev = () => {
     if (currentQuestion > 0) {
@@ -86,7 +84,7 @@ export function TestSection() {
                   dangerouslySetInnerHTML={{
                     __html: questions[currentQuestion].question,
                   }}
-                />
+                ></div>
               </div>
               <div className={styles.cardBack}>
                 <div
@@ -97,6 +95,8 @@ export function TestSection() {
               </div>
             </div>
           </div>
+
+          <div className={styles.flipeCard}>wefewf</div>
 
           {/* Show buttons after flipping */}
           <div className={styles.b}>

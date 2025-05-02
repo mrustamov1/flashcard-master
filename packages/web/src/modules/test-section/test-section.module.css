@@ -203,6 +203,11 @@ td {
   padding: 1rem;
 }
 
+
+.flipeCard{
+  position: absolute;
+  top: 90%;
+}
 .cardBack {
   background: #5e54d8;
   transform: rotateX(180deg);
