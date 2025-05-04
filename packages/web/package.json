@@ -14,7 +14,9 @@
     "react-dom": "^19.0.0",
     "react-hook-form": "7.56.1",
     "react-router-dom": "7.5.2",
-    "classnames": "2.5.1"
+    "classnames": "2.5.1",
+    "zod": "3.24.3"
+    
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",
@@ -27,6 +29,7 @@
     "globals": "^16.0.0",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.26.1",
-    "vite": "^6.3.1"
+    "vite": "^6.3.1",
+    "@types/node": "22.15.3"
   }
 }
