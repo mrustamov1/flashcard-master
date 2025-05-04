@@ -98,7 +98,9 @@ export function TestSection() {
             </div>
           </div>
 
-          <div className={styles.flipeCard}>Flip to see the answer</div>
+          <div className={styles.flipeCard}>
+            {flipped ? "Return to origin" : "Flip to see the answer"}
+          </div>
 
           {/* Show buttons after flipping */}
           <div className={styles.b}>
