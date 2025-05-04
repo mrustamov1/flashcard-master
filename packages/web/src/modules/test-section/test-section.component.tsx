@@ -1,63 +1,75 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
+import { useParams } from "react-router-dom"
 import styles from "./test-section.module.css"
+import { useQuery } from "@tanstack/react-query"
 import flashcard from "../../assets/flashcard.png"
 import arrowLeft from "../../assets/arrow-left.svg"
 import arrowRight from "../../assets/arrow-right.svg"
 import userProfile from "../../assets/user-profile.png"
-import { useParams } from "react-router-dom"
 
 export function TestSection() {
-  const { id } = useParams()
-  const [currentQuestion, setCurrentQuestion] = useState(0) // Start from 0 index
-  const [flipped, setFlipped] = useState(false)
+  // ---------------------------------------------------------------------------
+  // variables
+  // ---------------------------------------------------------------------------
   const totalQuestions = 20
-  const [questions, setQuestions] = useState<
-    { question: string; correct_answer: string; incorrect_answers: string[] }[]
-  >([])
+  const { id } = useParams()
+  const [flipped, setFlipped] = useState(false)
+  const [currentQuestion, setCurrentQuestion] = useState(0)
 
-  useEffect(() => {
-    const fetchTriviaQuestions = async () => {
-      try {
-        const category = id // fallback to General Knowledge
-        const res = await fetch(
-          `https://opentdb.com/api.php?amount=${totalQuestions}&category=${category}`,
-        )
-        const data = await res.json()
-        setQuestions(data.results)
-      } catch (error) {
-        console.error("Failed to fetch trivia questions:", error)
-      }
-    }
+  // ---------------------------------------------------------------------------
+  // fetch
+  // ---------------------------------------------------------------------------
 
-    fetchTriviaQuestions()
-  }, [id])
+  const fetchQuestions = async () => {
+    const category = id
+    const res = await fetch(
+      `https://opentdb.com/api.php?amount=${totalQuestions}&category=${category}`,
+    )
+    const data = await res.json()
+    return data.results
+  }
 
-  const handlePrev = () => {
+  const { data: questions, isLoading } = useQuery({
+    queryFn: () => fetchQuestions(),
+    queryKey: ["questions"],
+    staleTime: Infinity // It prevent data to fetch again and again in the background and in frotend
+  })
+
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
+
+  // ---------------------------------------------------------------------------
+  // functions
+  // ---------------------------------------------------------------------------
+
+  function handlePrev() {
     if (currentQuestion > 0) {
       setCurrentQuestion((prev) => prev - 1)
       setFlipped(false)
     }
   }
-  const handleNext = () => {
+
+  function handleNext() {
     setFlipped(false)
-    // Add delay so the flip reset happens before the next question shows
     setTimeout(() => {
       if (currentQuestion < totalQuestions - 1) {
         setCurrentQuestion((prev) => prev + 1)
       } else {
         alert("You have completed all questions!")
       }
-    }, 300) // 300ms is usually enough
+    }, 300)
   }
 
-  const handleKnowIt = () => {
+  function handleKnowIt() {
     handleNext()
   }
 
-  const handleDontKnowIt = () => {
+  function handleDontKnowIt() {
     handleNext()
   }
 
+  // ---------------------------------------------------------------------------
   return (
     <main className={styles.content}>
       <div className={styles.user}>
@@ -68,13 +80,17 @@ export function TestSection() {
         <img width={50} height={50} src={userProfile} alt="User" />
       </div>
 
-      {/* Show Question Progress */}
+      {/* --------------------------------------------------------------------------- */}
+      {/* SHOW QUESTIONS PROGRESS */}
+      {/* --------------------------------------------------------------------------- */}
       <div className={styles.progress}>
         Question {currentQuestion + 1} of {totalQuestions}
       </div>
 
-      {/* If countries are loaded */}
-      {questions.length > 0 && (
+      {/* --------------------------------------------------------------------------- */}
+      {/* IF COUNTRIES ARE LOADED */}
+      {/* --------------------------------------------------------------------------- */}
+      {questions?.length > 0 && (
         <div className={styles.cardContainer}>
           <div
             className={`${styles.answers} ${flipped ? styles.flipped : ""}`}
@@ -102,7 +118,9 @@ export function TestSection() {
             {flipped ? "Return to origin" : "Flip to see the answer"}
           </div>
 
-          {/* Show buttons after flipping */}
+          {/* --------------------------------------------------------------------------- */}
+          {/* SHOW BUTTON AFTER FLIPPING */}
+          {/* --------------------------------------------------------------------------- */}
           <div className={styles.b}>
             {flipped ? (
               <div className={styles.buttons}>
@@ -127,7 +145,7 @@ export function TestSection() {
       )}
 
       {questions.length === 0 && (
-        <div className={styles.loading}>Loading trivia questions...</div>
+        <div className={styles.loading}>Loading questions...</div>
       )}
     </main>
   )

@@ -26,6 +26,7 @@ export function Topics() {
   const { data: topics, isLoading } = useQuery({
     queryFn: () => fetchCategories(),
     queryKey: ["topics"],
+    staleTime: Infinity
   })
 
   if (isLoading) {
@@ -41,7 +42,6 @@ export function Topics() {
   }
 
   // ---------------------------------------------------------------------------
-
   return (
     <main className={styles.content}>
       <div className={styles.user}>
