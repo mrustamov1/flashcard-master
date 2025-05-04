@@ -6,6 +6,9 @@ import arrowRight from "../../assets/arrow-right-white.svg"
 
 export function HomePage() {
   const navigate = useNavigate()
+
+  
+
   return (
     <>
       <main className={styles.content}>
