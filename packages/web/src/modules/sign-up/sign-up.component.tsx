@@ -1,17 +1,26 @@
-import { useNavigate } from "react-router-dom"
 import styles from "./sign-up.module.css"
+import { useNavigate } from "react-router-dom"
+import { zodResolver } from "@hookform/resolvers/zod"
 import { SubmitHandler, useForm } from "react-hook-form"
-import { UserRegisterType } from "../../types/user.type"
 import { Input } from "../../ui-components/input/input.component"
+import { UserRegisterSchema, UserRegisterType } from "../../types/user.type"
 
 export function SignUp() {
+  // ---------------------------------------------------------------------------
+  // variables
+  // ---------------------------------------------------------------------------
   const navigate = useNavigate()
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<UserRegisterType>()
+  } = useForm<UserRegisterType>({
+    resolver: zodResolver(UserRegisterSchema),
+  })
 
+  // ---------------------------------------------------------------------------
+  // fetch
+  // ---------------------------------------------------------------------------
   const onSubmit: SubmitHandler<UserRegisterType> = async (data) => {
     try {
       const response = await fetch("http://localhost:9090/user/auth/register", {
@@ -39,6 +48,8 @@ export function SignUp() {
       console.log(error)
     }
   }
+
+  // ---------------------------------------------------------------------------
   return (
     <section className={styles.content}>
       <form className={styles.container} onSubmit={handleSubmit(onSubmit)}>
@@ -46,9 +57,7 @@ export function SignUp() {
         <div className={styles.starterInputs}>
           <Input
             label="Enter your name"
-            {...register("name", {
-              required: "All field are required",
-            })}
+            {...register("name")}
             type="text"
             placeholder="Name..."
             error={errors.name?.message}
@@ -56,9 +65,7 @@ export function SignUp() {
 
           <Input
             label="Enter your surname"
-            {...register("surname", {
-              required: "All field are required",
-            })}
+            {...register("surname")}
             type="text"
             placeholder="Surname..."
             error={errors.surname?.message}
@@ -66,19 +73,14 @@ export function SignUp() {
         </div>
         <Input
           label="Enter your email address"
-          {...register("email", {
-            required: "Enter valid email address",
-            pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-          })}
+          {...register("email")}
           type="email"
           placeholder="Email address..."
           error={errors.email?.message}
         />
         <Input
           label="Enter your password"
-          {...register("password", {
-            required: "All field are required",
-          })}
+          {...register("password")}
           type="password"
           placeholder="Password..."
           error={errors.password?.message}
@@ -88,6 +90,7 @@ export function SignUp() {
           {...register("confirmPassword")}
           type="password"
           placeholder="Confirm password..."
+          error={errors.confirmPassword?.message}
         />
         <button type="submit" className={styles.singUpButton}>
           Sign Up

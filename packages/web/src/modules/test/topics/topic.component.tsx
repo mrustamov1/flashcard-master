@@ -1,44 +1,46 @@
+import { useState } from "react"
 import styles from "./topic.module.css"
+import { useNavigate } from "react-router-dom"
+import { useQuery } from "@tanstack/react-query"
 import flashcard from "../../../assets/flashcard.png"
 import userProfile from "../../../assets/user-profile.png"
 import arrowRight from "../../../assets/arrow-right-white.svg"
-import { useNavigate } from "react-router-dom"
-import { useEffect, useState } from "react"
 
 export function Topics() {
+  // ---------------------------------------------------------------------------
+  // variables
+  // ---------------------------------------------------------------------------
   const navigate = useNavigate()
-  const [categories, setCategories] = useState<{ id: number; name: string }[]>(
-    [],
-  )
   const [query, setQuery] = useState("")
-  const [search, setSearch] = useState("")
 
-  const filteredItems = categories.filter((item) => {
-    return item.name.toLowerCase().includes(search.toLowerCase())
+  // ---------------------------------------------------------------------------
+  // functions
+  // ---------------------------------------------------------------------------
+
+  async function fetchCategories() {
+    const res = await fetch("https://opentdb.com/api_category.php")
+    const data = await res.json()
+    return data.trivia_categories
+  }
+
+  const { data: topics, isLoading } = useQuery({
+    queryFn: () => fetchCategories(),
+    queryKey: ["topics"],
   })
 
-  function handleSearch() {
-    setSearch(query)
+  if (isLoading) {
+    ;<div>Loading...</div>
   }
 
-  // Fetch categories from OpenTDB
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const res = await fetch("https://opentdb.com/api_category.php")
-        const data = await res.json()
-        setCategories(data.trivia_categories) // The categories come in `trivia_categories`
-      } catch (error) {
-        console.error("Failed to fetch categories:", error)
-      }
-    }
+  const filteredItems = topics?.filter((topic) => {
+    return topic.name.toLowerCase().includes(query.toLowerCase())
+  })
 
-    fetchCategories()
-  }, [])
-
-  const handleChooseTopic = (categoryId: number) => {
+  function handleChooseTopic(categoryId: number) {
     navigate(`/test-section/${categoryId}`)
   }
+
+  // ---------------------------------------------------------------------------
 
   return (
     <main className={styles.content}>
@@ -56,7 +58,7 @@ export function Topics() {
           placeholder="Search..."
           onChange={(e) => setQuery(e.target.value)}
         />
-        <button onClick={handleSearch}>Search</button>
+        {/* <button onClick={handleSearch}>Search</button> */}
       </article>
       <div className={styles.tableContent}>
         <table>
@@ -68,7 +70,7 @@ export function Topics() {
             </tr>
           </thead>
           <tbody>
-            {filteredItems.map((topic) => (
+            {filteredItems?.map((topic: any) => (
               <tr key={topic.id}>
                 <td>{topic.id}</td>
                 <td>{topic.name}</td>

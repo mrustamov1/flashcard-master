@@ -1,17 +1,26 @@
 import styles from "./sign-in.module.css"
 import { useNavigate } from "react-router-dom"
-import { UserLoginType } from "../../types/user.type"
+import { UserLoginSchema, UserLoginType } from "../../types/user.type"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { Input } from "../../ui-components/input/input.component"
+import { zodResolver } from "@hookform/resolvers/zod"
 
 export function SignIn() {
+  // ---------------------------------------------------------------------------
+  // variables
+  // ---------------------------------------------------------------------------
   const navigate = useNavigate()
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<UserLoginType>()
+  } = useForm<UserLoginType>({
+    resolver: zodResolver(UserLoginSchema),
+  })
 
+  // ---------------------------------------------------------------------------
+  // fetch
+  // ---------------------------------------------------------------------------
   const onSubmit: SubmitHandler<UserLoginType> = async (data) => {
     try {
       const response = await fetch("http://localhost:9090/user/auth/login", {
@@ -41,25 +50,21 @@ export function SignIn() {
     }
   }
 
+  // ---------------------------------------------------------------------------
   return (
     <section className={styles.content}>
       <form className={styles.container} onClick={handleSubmit(onSubmit)}>
         <h1 className={styles.title}>Sign In </h1>
         <Input
           label="Enter your email address"
-          {...register("email", {
-            required: "Enter valid email address",
-            pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-          })}
+          {...register("email")}
           type="text"
           placeholder="Email address..."
           error={errors.email?.message}
         />
         <Input
           label="Enter your password"
-          {...register("password", {
-            required: "All fields are required",
-          })}
+          {...register("password")}
           type="text"
           placeholder="Email address..."
           error={errors.password?.message}
