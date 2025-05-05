@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { images } from "../../assets"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import styles from "./test-section.module.css"
 import { useQuery } from "@tanstack/react-query"
 
@@ -10,8 +10,12 @@ export function TestSection() {
   // ---------------------------------------------------------------------------
   const totalQuestions = 20
   const { id } = useParams()
+  const navigate = useNavigate()
   const [flipped, setFlipped] = useState(false)
   const [currentQuestion, setCurrentQuestion] = useState(0)
+  const [hoverProfile, setHoverProfile] = useState(false)
+  const [hoverSettings, setHoverSettings] = useState(false)
+  const [hoverLogOut, setHoverLogOut] = useState(false)
 
   // ---------------------------------------------------------------------------
   // fetch
@@ -72,13 +76,67 @@ export function TestSection() {
       <div className={styles.user}>
         <div className={styles.logoName}>
           <img
+            onClick={() => navigate("/test")}
             className={styles.flashcard}
             src={images.FlashCard}
             alt="Flashcard"
           />
           <h1>Choose your favourite topic</h1>
         </div>
-        <img width={50} height={50} src={images.UserProfileLogo} alt="User" />
+        <div className={styles.userTooltipContainer}>
+          <div className={styles.userIcon}>
+            <img
+              width={50}
+              height={50}
+              src={images.UserProfileLogo}
+              alt="User Profile"
+            />
+          </div>
+          <div className={styles.tooltipMenu}>
+            <div
+              className={styles.tooltipItem}
+              onMouseEnter={() => setHoverProfile(true)}
+              onMouseLeave={() => setHoverProfile(false)}
+              onClick={() => navigate("/user-profile")}
+            >
+              <i
+                className={
+                  hoverProfile ? "fa-solid fa-user" : "fa-light fa-user"
+                }
+                style={{ color: "#6c63ff" }}
+              ></i>{" "}
+              Profile
+            </div>
+            <div
+              className={styles.tooltipItem}
+              onMouseEnter={() => setHoverSettings(true)}
+              onMouseLeave={() => setHoverSettings(false)}
+            >
+              <i
+                className={
+                  hoverSettings ? "fa-solid fa-sliders" : "fa-light fa-sliders"
+                }
+                style={{ color: "#6c63ff" }}
+              ></i>
+              Settings
+            </div>
+            <div
+              className={styles.tooltipItem}
+              onMouseEnter={() => setHoverLogOut(true)}
+              onMouseLeave={() => setHoverLogOut(false)}
+            >
+              <i
+                className={
+                  hoverLogOut
+                    ? "fa-solid fa-right-from-bracket"
+                    : "fa-light fa-right-from-bracket"
+                }
+                style={{ color: "#6c63ff" }}
+              ></i>
+              Logout
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* --------------------------------------------------------------------------- */}
@@ -113,10 +171,6 @@ export function TestSection() {
                 />
               </div>
             </div>
-          </div>
-
-          <div className={styles.flipeCard}>
-            {flipped ? "Return to origin" : "Flip to see the answer"}
           </div>
 
           {/* --------------------------------------------------------------------------- */}
