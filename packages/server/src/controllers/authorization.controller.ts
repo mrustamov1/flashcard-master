@@ -3,10 +3,10 @@ import { Request, Response } from "express"
 import { UserType } from "../types/user.type.js"
 import { AuthSchema } from "../schema/auth.schema.js"
 import { UserEntity } from "../entities/user.entity.js"
-import { SchemaUtiles } from "../utiles/schema.utile.js"
-import { DataSourceUtils } from "../utiles/data-source.utile.js"
+import { SchemaUtiles } from "../utils/schema.utile.js"
+import { DataSourceUtils } from "../utils/data-source.utile.js"
 import { LoginModel, RegistrationModel } from "../models/user.model.js"
-import { TokenUtils } from "../utiles/token.utiles.js"
+import { TokenUtils } from "../utils/token.utiles.js"
 
 export const AuthorizationController = {
   async register(
