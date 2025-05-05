@@ -94,8 +94,6 @@
   transition: all ease 1s;
 }
 
-
-
 .userTooltipContainer {
   position: relative;
   display: inline-block;
@@ -106,11 +104,10 @@
   border-radius: 50%;
 }
 
-/* Tooltip menu: hidden by default */
 .tooltipMenu {
   display: none;
   position: absolute;
-  top: 60px; /* space below icon */
+  top: 60px;
   right: 0;
   background-color: #fff;
   border: 1px solid #ddd;
@@ -123,14 +120,13 @@
 .tooltipMenu::before {
   content: "";
   position: absolute;
-  top: -8px; /* Position it above the box */
-  right: 16px; /* Align with icon (adjust if needed) */
+  top: -8px;
+  right: 16px;
   border-width: 0 8px 8px 8px;
   border-style: solid;
-  border-color: transparent transparent #fff transparent; /* white arrow */
+  border-color: transparent transparent #fff transparent;
 }
 
-/* Menu item styling */
 .tooltipItem {
   padding: 10px 16px;
   gap: 1rem;
@@ -144,7 +140,6 @@
   background-color: #f0f0f0;
 }
 
-/* Show tooltip menu on hover */
 .userTooltipContainer:hover .tooltipMenu {
   display: block;
 }

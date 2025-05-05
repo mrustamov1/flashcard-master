@@ -45,6 +45,7 @@ export function Topics() {
       <div className={styles.user}>
         <div className={styles.logoName}>
           <img
+            onClick={() => navigate("/test")}
             className={styles.flashcard}
             src={images.FlashCard}
             alt="Flashcard"
@@ -60,7 +61,7 @@ export function Topics() {
           placeholder="Search..."
           onChange={(e) => setQuery(e.target.value)}
         />
-        {/* <button onClick={handleSearch}>Search</button> */}
+        <button>Search</button>
       </article>
       <div className={styles.tableContent}>
         <table>
@@ -84,7 +85,7 @@ export function Topics() {
                     Press to choose{" "}
                     <img
                       className={styles.actionImage}
-                      src={images.ArrowRight}
+                      src={images.ArrowRightWhite}
                       alt="Right Image"
                     />
                   </button>

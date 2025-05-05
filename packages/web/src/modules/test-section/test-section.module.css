@@ -203,21 +203,6 @@ td {
   padding: 1rem;
 }
 
-
-.flipeCard{
-  position: absolute;
-  top: 80%;
-  background: linear-gradient(#6c63ff, #836fff, #a393ff);
-  max-width: 1255px;
-  margin: 0 auto;
-  width: 100%;
-  border-radius: 8px;
-  display: flex;
-  color: #FFFFFF;
-  font-size: 14px;
-  padding: 0.35rem 0;
-  justify-content: center;
-}
 .cardBack {
   background: #5e54d8;
   transform: rotateX(180deg);
@@ -291,13 +276,62 @@ td {
   width: 100%;
 }
 
-
-.navigationButtons img{
-    padding: 0.5rem;
+.navigationButtons img {
+  padding: 0.5rem;
 }
 
-.navigationButtons img:hover{
-    background-color: #ECECEC;
-    border-radius: 8px;
-    padding: 0.5rem;
+.navigationButtons img:hover {
+  background-color: #ececec;
+  border-radius: 8px;
+  padding: 0.5rem;
+}
+
+.userTooltipContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.userIcon img {
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.tooltipMenu {
+  display: none;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 18rem;
+  z-index: 100;
+}
+
+.tooltipMenu::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  right: 16px;
+  border-width: 0 8px 8px 8px;
+  border-style: solid;
+  border-color: transparent transparent #fff transparent;
+}
+
+.tooltipItem {
+  padding: 10px 16px;
+  gap: 1rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.tooltipItem:hover {
+  background-color: #f0f0f0;
+}
+
+.userTooltipContainer:hover .tooltipMenu {
+  display: block;
 }
