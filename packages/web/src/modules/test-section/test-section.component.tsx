@@ -1,11 +1,8 @@
 import { useState } from "react"
+import { images } from "../../assets"
 import { useParams } from "react-router-dom"
 import styles from "./test-section.module.css"
 import { useQuery } from "@tanstack/react-query"
-import flashcard from "../../assets/flashcard.png"
-import arrowLeft from "../../assets/arrow-left.svg"
-import arrowRight from "../../assets/arrow-right.svg"
-import userProfile from "../../assets/user-profile.png"
 
 export function TestSection() {
   // ---------------------------------------------------------------------------
@@ -32,7 +29,7 @@ export function TestSection() {
   const { data: questions, isLoading } = useQuery({
     queryFn: () => fetchQuestions(),
     queryKey: ["questions"],
-    staleTime: Infinity // It prevent data to fetch again and again in the background and in frotend
+    staleTime: Infinity, // It prevent data to fetch again and again in the background and in frontend
   })
 
   if (isLoading) {
@@ -74,10 +71,14 @@ export function TestSection() {
     <main className={styles.content}>
       <div className={styles.user}>
         <div className={styles.logoName}>
-          <img className={styles.flashcard} src={flashcard} alt="Flashcard" />
+          <img
+            className={styles.flashcard}
+            src={images.FlashCard}
+            alt="Flashcard"
+          />
           <h1>Choose your favourite topic</h1>
         </div>
-        <img width={50} height={50} src={userProfile} alt="User" />
+        <img width={50} height={50} src={images.UserProfileLogo} alt="User" />
       </div>
 
       {/* --------------------------------------------------------------------------- */}
@@ -136,8 +137,8 @@ export function TestSection() {
               </div>
             ) : (
               <div className={styles.navigationButtons}>
-                <img src={arrowLeft} alt="" onClick={handlePrev} />
-                <img src={arrowRight} alt="" onClick={handleNext} />
+                <img src={images.ArrowLeft} alt="" onClick={handlePrev} />
+                <img src={images.ArrowRight} alt="" onClick={handleNext} />
               </div>
             )}
           </div>
