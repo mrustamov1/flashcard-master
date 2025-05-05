@@ -28,7 +28,7 @@ export function Topics() {
   })
 
   if (isLoading) {
-    ;<div>Loading...</div>
+    <div>Loading...</div>
   }
 
   const filteredItems = topics?.filter((topic) => {
