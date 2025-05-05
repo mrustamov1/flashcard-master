@@ -1,8 +1,6 @@
-import logo from "../../assets/logo.svg"
+import { images } from "../../assets"
 import styles from "./home-page.module.css"
 import { useNavigate } from "react-router-dom"
-import flashcard from "../../assets/flashcard.png"
-import arrowRight from "../../assets/arrow-right-white.svg"
 
 export function HomePage() {
   // ---------------------------------------------------------------------------
@@ -19,7 +17,7 @@ export function HomePage() {
             <div className={styles.logoName}>
               <img
                 className={styles.flashcard}
-                src={flashcard}
+                src={images.FlashCard}
                 alt="Flashcard"
               />
               <h1>Flashcard Master</h1>
@@ -38,11 +36,15 @@ export function HomePage() {
               onClick={() => navigate("/test")}
             >
               Join
-              <img className={styles.arrowRight} src={arrowRight} alt="" />
+              <img
+                className={styles.arrowRight}
+                src={images.ArrowRightWhite}
+                alt=""
+              />
             </button>
           </article>
 
-          <img className={styles.homePageLogo} src={logo} alt="Logo" />
+          <img className={styles.homePageLogo} src={images.Logo} alt="Logo" />
         </div>
       </main>
     </>

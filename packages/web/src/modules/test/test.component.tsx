@@ -1,10 +1,7 @@
 import { useState } from "react"
+import { images } from "../../assets"
 import styles from "./test.module.css"
 import { useNavigate } from "react-router-dom"
-import flashcard from "../../assets/flashcard.png"
-import userProfile from "../../assets/user-profile.png"
-import arrowRight from "../../assets/arrow-right.svg"
-import arrowFatLine from "../../assets/arrow-fat-lines-up.svg"
 
 export function Test() {
   const navigate = useNavigate()
@@ -16,12 +13,21 @@ export function Test() {
     <main className={styles.content}>
       <div className={styles.user}>
         <div className={styles.logoName}>
-          <img className={styles.flashcard} src={flashcard} alt="Flashcard" />
+          <img
+            className={styles.flashcard}
+            src={images.FlashCard}
+            alt="Flashcard"
+          />
           <h1>Flashcard Master</h1>
         </div>
         <div className={styles.userTooltipContainer}>
           <div className={styles.userIcon}>
-            <img width={50} height={50} src={userProfile} alt="User Profile" />
+            <img
+              width={50}
+              height={50}
+              src={images.UserProfileLogo}
+              alt="User Profile"
+            />
           </div>
           <div className={styles.tooltipMenu}>
             <div
@@ -79,7 +85,7 @@ export function Test() {
           <span>Choose a topic</span>
           <img
             className={styles.arrowRight}
-            src={arrowRight}
+            src={images.ArrowRight}
             alt="Arrow Right"
           />
         </div>
@@ -91,7 +97,7 @@ export function Test() {
           <span>Random Topic</span>
           <img
             className={styles.arrowRight}
-            src={arrowRight}
+            src={images.ArrowRight}
             alt="Arrow Right"
           />
         </div>
@@ -104,7 +110,7 @@ export function Test() {
           <span>Learning</span>
           <img
             className={styles.arrowRight}
-            src={arrowRight}
+            src={images.ArrowRight}
             alt="Arrow Right"
           />
         </div>
@@ -117,7 +123,7 @@ export function Test() {
           <span>Guide about quiz</span>
           <img
             className={styles.arrowRight}
-            src={arrowRight}
+            src={images.ArrowRight}
             alt="Arrow Right"
           />
         </div>
@@ -132,7 +138,7 @@ export function Test() {
         <div className={styles.top}>
           <img
             className={styles.arrowFatLines}
-            src={arrowFatLine}
+            src={images.ArrowFatLines}
             alt="Arrow Up"
           />
         </div>

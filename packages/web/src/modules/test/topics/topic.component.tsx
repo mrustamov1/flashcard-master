@@ -1,10 +1,8 @@
 import { useState } from "react"
 import styles from "./topic.module.css"
+import { images } from "../../../assets"
 import { useNavigate } from "react-router-dom"
 import { useQuery } from "@tanstack/react-query"
-import flashcard from "../../../assets/flashcard.png"
-import userProfile from "../../../assets/user-profile.png"
-import arrowRight from "../../../assets/arrow-right-white.svg"
 
 export function Topics() {
   // ---------------------------------------------------------------------------
@@ -26,7 +24,7 @@ export function Topics() {
   const { data: topics, isLoading } = useQuery({
     queryFn: () => fetchCategories(),
     queryKey: ["topics"],
-    staleTime: Infinity
+    staleTime: Infinity,
   })
 
   if (isLoading) {
@@ -46,10 +44,14 @@ export function Topics() {
     <main className={styles.content}>
       <div className={styles.user}>
         <div className={styles.logoName}>
-          <img className={styles.flashcard} src={flashcard} alt="Flashcard" />
+          <img
+            className={styles.flashcard}
+            src={images.FlashCard}
+            alt="Flashcard"
+          />
           <h1>Choose your favourite topic</h1>
         </div>
-        <img width={50} height={50} src={userProfile} alt="User" />
+        <img width={50} height={50} src={images.UserProfileLogo} alt="User" />
       </div>
       <article className={styles.search}>
         <input
@@ -82,8 +84,8 @@ export function Topics() {
                     Press to choose{" "}
                     <img
                       className={styles.actionImage}
-                      src={arrowRight}
-                      alt=""
+                      src={images.ArrowRight}
+                      alt="Right Image"
                     />
                   </button>
                 </td>
