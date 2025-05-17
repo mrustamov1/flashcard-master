@@ -16,6 +16,7 @@ server.use(
 server.use(
   express.urlencoded({
     limit: "50mb",
+    extended: false,
     parameterLimit: 50000,
   }),
 )
