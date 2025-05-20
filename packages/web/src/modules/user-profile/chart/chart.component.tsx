@@ -1,3 +1,9 @@
 export function Chart() {
-  return <div>Chart</div>
+  return (
+    <section>
+      <div>
+        <p>Chart</p>
+      </div>
+    </section>
+  )
 }
