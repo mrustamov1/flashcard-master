@@ -11,7 +11,7 @@ import { TokenUtils } from "../utils/token.utiles.js"
 export const AuthorizationController = {
   async register(
     req: Request<unknown, unknown, RegistrationModel>,
-    res: Response,
+    res: Response
   ) {
     try {
       SchemaUtiles<RegistrationModel>(AuthSchema.register, req.body)

@@ -3,6 +3,7 @@ import styles from "./topic.module.css"
 import { images } from "../../../assets"
 import { useNavigate } from "react-router-dom"
 import { useQuery } from "@tanstack/react-query"
+import { ShowAllState } from "../../../types/topic.type"
 
 export function Topics() {
   // ---------------------------------------------------------------------------
@@ -28,10 +29,10 @@ export function Topics() {
   })
 
   if (isLoading) {
-    <div>Loading...</div>
+    ;<div>Loading...</div>
   }
 
-  const filteredItems = topics?.filter((topic) => {
+  const filteredItems = topics?.filter((topic: any) => {
     return topic.name.toLowerCase().includes(query.toLowerCase())
   })
 
@@ -73,7 +74,7 @@ export function Topics() {
             </tr>
           </thead>
           <tbody>
-            {filteredItems?.map((topic: any) => (
+            {filteredItems?.map((topic: ShowAllState) => (
               <tr key={topic.id}>
                 <td>{topic.id}</td>
                 <td>{topic.name}</td>
