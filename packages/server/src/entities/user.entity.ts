@@ -2,6 +2,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm"
 import { UserType } from "../types/user.type"
 
 @Entity({ name: "users" })
+
 export class UserEntity implements UserType {
   @PrimaryGeneratedColumn("uuid")
   id!: string

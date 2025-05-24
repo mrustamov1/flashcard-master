@@ -2,13 +2,25 @@ import { useState } from "react"
 import { images } from "../../assets"
 import styles from "./test.module.css"
 import { useNavigate } from "react-router-dom"
+// import { useQuestions } from "../../context/questions.context"
 
 export function Test() {
   const navigate = useNavigate()
   const [hoverProfile, setHoverProfile] = useState(false)
   const [hoverSettings, setHoverSettings] = useState(false)
   const [hoverLogOut, setHoverLogOut] = useState(false)
+  // const { setQuestions } = useQuestions()
 
+  // async function handleRandomTopicClick() {
+  //   try {
+  //     const res = await fetch("https://opentdb.com/api.php?amount=16")
+  //     const data = await res.json()
+  //     setQuestions(data.results) // Store questions in context
+  //     navigate("/test-section") // Navigate after data is set
+  //   } catch (err) {
+  //     console.error("Error fetching random questions", err)
+  //   }
+  // }
   return (
     <main className={styles.content}>
       <div className={styles.user}>
@@ -89,7 +101,8 @@ export function Test() {
             alt="Arrow Right"
           />
         </div>
-        <div className={styles.card} onClick={() => navigate("/test-section")}>
+
+        <div className={styles.card} >
           <i
             className="fa-solid fa-rectangles-mixed"
             style={{ fontSize: "25px", color: "#6c63ff" }}

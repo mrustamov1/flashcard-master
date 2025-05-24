@@ -33,7 +33,7 @@ export function HomePage() {
 
             <button
               className={styles.joinButton}
-              onClick={() => navigate("/test")}
+              onClick={() => navigate("/sign-up")}
             >
               Join
               <img
