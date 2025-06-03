@@ -6,9 +6,7 @@ import { Input } from "../../ui-components/input/input.component"
 import { UserLoginSchema, UserLoginType } from "../../types/user.type"
 
 export function SignIn() {
-  // ---------------------------------------------------------------------------
-  // variables
-  // ---------------------------------------------------------------------------
+
   const navigate = useNavigate()
   const {
     register,
