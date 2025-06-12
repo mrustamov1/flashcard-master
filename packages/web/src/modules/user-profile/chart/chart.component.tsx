@@ -2,7 +2,7 @@ export function Chart() {
   return (
     <section>
       <div>
-        <p>Chart</p>
+        <p>Chart wef</p>
       </div>
     </section>
   )
