@@ -18,6 +18,7 @@
 
 .titleAndDesc {
   display: flex;
+  flex-direction: column;
 }
 
 .logoName {
